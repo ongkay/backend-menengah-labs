@@ -6,13 +6,16 @@
   "scripts": {
     "start-prod": "NODE_ENV=production node ./src/server.js",
     "start-dev": "nodemon ./src/server.js",
-    "lint": "eslint ./src",
-    "lintfix": "eslint ./src --fix"
+    "start": "nodemon ./src/server.js",
+    "lint": "eslint ./src"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
     "nodemon": "^2.0.7"
   },
   "dependencies": {
