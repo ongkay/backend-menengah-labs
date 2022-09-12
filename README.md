@@ -248,8 +248,10 @@
       };
       ```
 
-      > Seluruh kueri yang merupakan parameter diubah dengan `$angka` (contoh $1). Angka terkecil dimulai dari 1. Referensi angka yang digunakan adalah berdasarkan urutan nilai yang ditempatkan pada query.values. Ingat! Urutan penempatan nilai sangatlah berpengaruh. Jadi jangan sampai salah urutan yah.
-      > cek panduan resminya : https://node-postgres.com/
+      > - Seluruh kueri yang merupakan parameter diubah dengan `$angka` (contoh $1). Angka terkecil dimulai dari 1. Referensi angka yang digunakan adalah berdasarkan urutan nilai yang ditempatkan pada query.values. Ingat! Urutan penempatan nilai sangatlah berpengaruh. Jadi jangan sampai salah urutan yah.
+      > - RETURNING merupakan kueri yang memungkinkan kita untuk mengambil nilai kolom dari baris yang terdampak oleh operasi INSERT, UPDATE, ataupun DELETE.
+      > - INSERT .... RETURNING \* artinya hasil kueri akan mengembalikan seluruh nilai kolom yang baru saja dimasukkan oleh operasi INSERT. cek doc : https://www.postgresql.org/docs/current/dml-returning.html
+      >   cek panduan resminya : https://node-postgres.com/
 
 ## Langkah-langkah praktekan ke projek ini :
 
