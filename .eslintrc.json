@@ -14,6 +14,7 @@
         "linebreak-style": "off",
         "no-underscore-dangle": "off",
         "newline-per-chained-call": "off",
+        "camelcase": "off",
         "no-unused-vars": "off"
     }
 }
