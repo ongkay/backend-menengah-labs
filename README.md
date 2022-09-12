@@ -1,19 +1,5 @@
 ## Dasar postgreSQL menggunakan CLI
 
-1.  **judul**
-
-    - Format :
-
-      ```bash
-
-      ```
-
-    - contoh
-
-      ```bash
-
-      ```
-
 1.  **Login**
 
     - Format login :
