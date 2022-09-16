@@ -24,6 +24,6 @@ const routes = (handler) => [
     path: '/notes/{id}',
     handler: handler.deleteNoteByIdHandler,
   },
-];
+]
 
-module.exports = routes;
+module.exports = routes

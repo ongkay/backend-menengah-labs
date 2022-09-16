@@ -13,7 +13,7 @@ const users = require('./api/users')
 const UsersService = require('./services/postgres/UsersService')
 const UsersValidator = require('./validator/users')
 
-//Server Runing
+// Server Runing
 const init = async () => {
   const notesService = new NotesService()
   const usersService = new UsersService()
