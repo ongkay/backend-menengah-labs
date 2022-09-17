@@ -7,7 +7,6 @@ class CollaborationsService {
     this._pool = new Pool()
   }
 
-  // Fungsi untuk menambahkan kolaborasi.
   async addCollaboration(noteId, userId) {
     const id = `collab-${nanoid(16)}`
 
@@ -24,10 +23,8 @@ class CollaborationsService {
     return result.rows[0].id
   }
 
-  // Fungsi untuk menghapus kolaborasi.
   async deleteCollaboration(noteId, userId) {
     const query = {
-      // -kueri untuk menghapus nilai collaboration--pada tabel collaborations--berdasarkan noteId dan userId yang diberikan di parameter
       text: 'DELETE FROM collaborations WHERE note_id = $1 AND user_id = $2 RETURNING id',
       values: [noteId, userId],
     }
@@ -39,10 +36,8 @@ class CollaborationsService {
     }
   }
 
-  // Fungsi untuk memeriksa apakah user merupakan kolabolator dari catatan
   async verifyCollaborator(noteId, userId) {
     const query = {
-      // -lakukan kueri untuk memastikan kolaborasi dengan noteId dan userId yang diberikan di parameter yang ada di database
       text: 'SELECT * FROM collaborations WHERE note_id = $1 AND user_id = $2',
       values: [noteId, userId],
     }
@@ -56,4 +51,3 @@ class CollaborationsService {
 }
 
 module.exports = CollaborationsService
-// - kita akan melakukan sedikit perubahan pada NotesService, yakni membuat fungsi baru yang berfungsi untuk menentukan hak akses kolaborasi pada catata

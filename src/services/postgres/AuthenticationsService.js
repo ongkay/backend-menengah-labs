@@ -38,8 +38,3 @@ class AuthenticationsService {
 }
 
 module.exports = AuthenticationsService
-
-// AuthenticationService ini akan bertanggung jawab dalam menangani pengelolaan data refresh token pada tabel authentications melalui fungsi-fungsi:
-// -1. Memasukkan refresh token (addRefreshToken).
-// -2. Memverifikasi atau memastikan refresh token ada di database (verifyRefreshToken).
-// -3. Menghapus refresh token (deleteRefreshToken).

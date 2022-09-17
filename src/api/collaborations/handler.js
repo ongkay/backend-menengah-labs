@@ -12,13 +12,11 @@ class CollaborationsHandler {
 
   async postCollaborationHandler(request, h) {
     try {
-      this._validator.validateCollaborationPayload(request.payload) //[1]
+      this._validator.validateCollaborationPayload(request.payload)
       const { id: credentialId } = request.auth.credentials
       const { noteId, userId } = request.payload
 
-      await this._notesService.verifyNoteOwner(noteId, credentialId) //[2]
-
-      //-menambahkan catatan
+      await this._notesService.verifyNoteOwner(noteId, credentialId)
       const collaborationId = await this._collaborationsService.addCollaboration(noteId, userId)
 
       const response = h.response({
@@ -53,13 +51,11 @@ class CollaborationsHandler {
 
   async deleteCollaborationHandler(request, h) {
     try {
-      this._validator.validateCollaborationPayload(request.payload) //[1]
+      this._validator.validateCollaborationPayload(request.payload)
       const { id: credentialId } = request.auth.credentials
       const { noteId, userId } = request.payload
 
-      await this._notesService.verifyNoteOwner(noteId, credentialId) //[2]
-
-      //-menghapus catatan
+      await this._notesService.verifyNoteOwner(noteId, credentialId)
       await this._collaborationsService.deleteCollaboration(noteId, userId)
 
       return {
@@ -89,11 +85,3 @@ class CollaborationsHandler {
 }
 
 module.exports = CollaborationsHandler
-
-/**NOTE :
- * [1] Fungsi handler ini bertugas untuk menangani permintaan POST yang masuk ke /collaborations
- * -ermintaan tersebut seharusnya membawa payload noteId dan userId pada body. Jadi untuk memastikan hal tersebut, kita awali dengan memvalidasi request.payload menggunakan fungsi this._validator.validateCollaborationPayload
- * [2] sebelum menambahkan kolaborator pada catatan, pengguna yang mengajukan permintaan haruslah owner dari catatan tersebut
- * -Untuk memastikan hal itu, kita perlu verifikasi request.auth.credentials.id dan noteId yang berada di request.payload menggunakan fungsi this._notesService.verifyNoteOwner
- *
- */

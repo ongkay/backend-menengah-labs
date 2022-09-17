@@ -18,9 +18,3 @@ const routes = (handler) => [
 ]
 
 module.exports = routes
-
-/**
- * Perhatikan route konfigurasi di atas
- * -Jangan lupa untuk memberikan options.auth dengan nilai notesapp_jwt. Mengapa?
- * -Karena nantinya pada proses menambahkan atau menghapus kolaborasi dibutuhkan informasi pengguna autentik untuk menentukan resource dapat diakses atau tidak
- */
