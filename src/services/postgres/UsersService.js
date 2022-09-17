@@ -11,10 +11,8 @@ class UsersService {
   }
 
   async addUser({ username, password, fullname }) {
-    // -Verifikasi username, pastikan belum terdaftar.
     await this.verifyNewUsername(username)
 
-    // -Bila verifikasi lolos, maka masukkan user baru ke database.
     const id = `user-${nanoid(16)}`
     const hashedPassword = await bcrypt.hash(password, 10)
 
@@ -33,7 +31,6 @@ class UsersService {
 
   async verifyNewUsername(username) {
     const query = {
-      // lakukan kueri username dari tabel users berdasarkan nilai username yang diberikan pada paramete
       text: 'SELECT username FROM users WHERE username = $1',
       values: [username],
     }
@@ -47,7 +44,6 @@ class UsersService {
 
   async getUserById(userId) {
     const query = {
-      // mendapatkan id, username, dan fullname dari tabel users berdasarkan parameter userId
       text: 'SELECT id, username, fullname FROM users WHERE id = $1',
       values: [userId],
     }
@@ -63,7 +59,6 @@ class UsersService {
 
   async verifyUserCredential(username, password) {
     const query = {
-      // - mendapatkan id dan password dari tabel user berdasarkan username yang dikirimkan melalui parameter.
       text: 'SELECT id, password FROM users WHERE username = $1',
       values: [username],
     }

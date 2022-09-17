@@ -10,23 +10,17 @@ class NotesService {
     this._pool = new Pool()
   }
 
-  // [1] BUAT FUNGSI ADDNOTE :
   async addNote({ title, body, tags, owner }) {
     const id = nanoid(16)
     const createdAt = new Date().toISOString()
     const updatedAt = createdAt
 
-    // -buat objek query untuk memasukan notes baru ke database
     const query = {
       text: 'INSERT INTO notes VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id',
       values: [id, title, body, tags, createdAt, updatedAt, owner],
     }
 
-    // -mengeksekusi query yang sudah dibuat, akan berjalan secara asynchronous
     const result = await this._pool.query(query)
-
-    // - Jika nilai id tidak undefined, = catatan berhasil dimasukan dan kembalikan fungsi dengan nilai id
-    // - Jika tidak maka throw InvariantError.
 
     if (!result.rows[0].id) {
       throw new InvariantError('Catatan gagal ditambahkan')
@@ -35,8 +29,6 @@ class NotesService {
     return result.rows[0].id
   }
 
-  // [2] Membuat Fungsi getNotes
-  // - fungsi getNotes tidak akan mengembalikan seluruh catatan yang disimpan pada tabel notes. Melainkan hanya catatan yang dimiliki oleh owner saja.
   async getNotes(owner) {
     const query = {
       text: 'SELECT * FROM notes WHERE owner = $1',
@@ -46,8 +38,6 @@ class NotesService {
     return result.rows.map(mapDBToModel)
   }
 
-  // [4]BUAT FUNGSI GetNoteById
-  // - melakukan query untuk mendapatkan note di dalam database berdasarkan id yang diberikan
   async getNoteById(id) {
     const query = {
       text: 'SELECT * FROM notes WHERE id = $1',
@@ -56,17 +46,13 @@ class NotesService {
 
     const result = await this._pool.query(query)
 
-    // -bila "result.rows" nilainya 0 (false) maka bangkitkan NotFoundError
     if (!result.rows.length) {
       throw new NotFoundError('Catatan tidak ditemukan')
     }
 
-    // - Bila "true", maka kembalikan dengan result.rows[0] yang sudah di-mapping dengan fungsi mapDBToModel
     return result.rows.map(mapDBToModel)[0]
   }
 
-  // [5] Fungsi editNoteById
-  // - melakukan query untuk mengubah note di dalam database berdasarkan id yang diberikan
   async editNoteById(id, { title, body, tags }) {
     const updatedAt = new Date().toISOString()
     const query = {
@@ -76,14 +62,11 @@ class NotesService {
 
     const result = await this._pool.query(query)
 
-    // -jika "result.row" nilainya 0(false) maka error, dan jika tru tidak perlu mengembalikan nilai apapun
     if (!result.rows.length) {
       throw new NotFoundError('Gagal memperbarui catatan. Id tidak ditemukan')
     }
   }
 
-  // [6] deleteNoteById
-  // -menghapus note di dalam database berdasarkan id yang diberikan
   async deleteNoteById(id) {
     const query = {
       text: 'DELETE FROM notes WHERE id = $1 RETURNING id',
@@ -114,4 +97,3 @@ class NotesService {
 }
 
 module.exports = NotesService
-// Impor ke server.js
