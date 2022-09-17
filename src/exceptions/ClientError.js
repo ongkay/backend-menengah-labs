@@ -7,7 +7,3 @@ class ClientError extends Error {
 }
 
 module.exports = ClientError
-
-/** NOTE :
- * ClientError (extends dari Error) : Custom error yang mengindikasikan eror karena masalah yang terjadi pada client. ClientError ini bersifat abstrak karena client error bisa lebih spesifik. Sehingga, sebaiknya Anda tidak membangkitkan error dengan menggunakan class ini secara langsung, tetapi gunakanlah turunannya.
- */

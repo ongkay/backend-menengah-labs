@@ -8,9 +8,3 @@ class NotFoundError extends ClientError {
 }
 
 module.exports = NotFoundError
-
-/** NOTE :
- * InvariantError (extends dari ClientError) :
- * Custom error yang mengindikasikan eror karena kesalahan bisnis logic pada data yang dikirimkan oleh client. -
- * Kesalahan validasi data merupakan salah satu InvariantError.
- */

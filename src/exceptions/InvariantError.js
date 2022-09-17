@@ -8,8 +8,3 @@ class InvariantError extends ClientError {
 }
 
 module.exports = InvariantError
-/** NOTE :
- * default nilai status code 400
- * NotFoundError (extends dari ClientError) :
- * Custom error yang mengindikasikan eror karena resource yang diminta client tidak ditemukan.
- */
