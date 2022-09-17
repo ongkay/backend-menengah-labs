@@ -34,6 +34,7 @@
                 }
             }
         ],
+        "spaced-comment": "off",
         "newline-per-chained-call": 0,
         "no-console": 0,
         "no-underscore-dangle": 0,
