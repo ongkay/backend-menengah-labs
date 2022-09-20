@@ -20,7 +20,10 @@ class NotesHandler {
       const { id: credentialId } = request.auth.credentials
 
       const noteId = await this._service.addNote({
-        title, body, tags, owner: credentialId,
+        title,
+        body,
+        tags,
+        owner: credentialId,
       })
 
       const response = h.response({
@@ -101,7 +104,8 @@ class NotesHandler {
   async putNoteByIdHandler(request, h) {
     try {
       this._validator.validateNotePayload(request.payload)
-      const { id } = request.params; const { id: credentialId } = request.auth.credentials
+      const { id } = request.params
+      const { id: credentialId } = request.auth.credentials
 
       await this._service.verifyNoteAccess(id, credentialId)
       await this._service.editNoteById(id, request.payload)
